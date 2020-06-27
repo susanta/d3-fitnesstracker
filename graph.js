@@ -29,6 +29,8 @@ const yAxisGroup = graph.append('g').attr('class', 'y-axis');
 const update = (data) => {
   //   console.log(data);
 
+  data = data.filter((item) => item.activity == activity);
+
   // set scale domains
   x.domain(d3.extent(data, (d) => new Date(d.date)));
   y.domain([0, d3.max(data, (d) => d.distance)]);
