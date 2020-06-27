@@ -80,6 +80,23 @@ const update = (data) => {
     .attr('cy', (d) => y(d.distance))
     .attr('fill', '#ccc');
 
+  graph
+    .selectAll('circle')
+    .on('mouseover', (d, i, n) => {
+      d3.select(n[i])
+        .transition()
+        .duration(100)
+        .attr('r', 8)
+        .attr('fill', '#fff');
+    })
+    .on('mouseleave', (d, i, n) => {
+      d3.select(n[i])
+        .transition()
+        .duration(100)
+        .attr('r', 4)
+        .attr('fill', '#ccc');
+    });
+
   //   create axes
   const xAxis = d3.axisBottom(x).ticks(4).tickFormat(d3.timeFormat('%b %d'));
   const yAxis = d3
